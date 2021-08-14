@@ -1,0 +1,6 @@
+*
+!*.el
+!.gitignore
+!personal
+!personal/*.el
+!README.md
