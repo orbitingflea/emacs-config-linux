@@ -7,12 +7,18 @@
 (global-set-key [f5] 'compile)
 (global-set-key [f6] 'shell)
 
-;; truncate lines by default
-(setq-default truncate-lines t
-              default-tab-width 4
+;; do not use tab indent
+(setq-default default-tab-width 4
               tab-width 4
               indent-tabs-mode nil)
-(defun hook-do-not-truncate-lines ()
-  (setq truncate-lines nil))
-(add-hook 'org-mode-hook 'hook-do-not-truncate-lines)
-(add-hook 'text-mode-hook 'hook-do-not-truncate-lines)
+
+;; do not truncate lines by default
+;; truncate lines in specific modes
+(defun hook-truncate-lines ()
+  (setq truncate-lines t))
+(add-hook 'c-mode-common-hook 'hook-truncate-lines)
+(add-hook 'dired-mode-hook 'hook-truncate-lines)
+(add-hook 'python-mode-hook 'hook-truncate-lines)
+
+;; move the window to upper left corner
+(set-frame-position (frame-focus) 10 40)
